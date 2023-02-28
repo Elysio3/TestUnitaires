@@ -20,24 +20,24 @@ public class Customer {
 
     public String statement() {
         double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        int totalFrequentRenterPoints = 0;
 
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
         for (Rental rental : rentals) {
+
             double thisAmount = rental.getAmountFor();
-            // add frequent renter points
-            frequentRenterPoints ++;
-            // add bonus for a two day new release rental
-            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) && rental.getDaysRented() > 1)
-                frequentRenterPoints ++;
+            totalAmount += thisAmount;
+
+            int currentRentalRenterPoints = rental.getCurrentRentalRenterPoints();
+            totalFrequentRenterPoints += currentRentalRenterPoints;
 
             // show figures for this rental
             result.append("\t").append(rental.getMovie().getTitle()).append("\t").append(thisAmount).append("\n");
-            totalAmount += thisAmount;
+
         }
         // add footer lines
         result.append("Amount owed is ").append(totalAmount).append("\n");
-        result.append("You earned ").append(frequentRenterPoints).append(" frequent renter points");
+        result.append("You earned ").append(totalFrequentRenterPoints).append(" frequent renter points");
         return result.toString();
     }
 
