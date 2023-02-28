@@ -1,29 +1,21 @@
+import pricecode.PriceCode;
+
 public class Movie {
-    public static final int CHILDRENS = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
 
-    private String title;
-    private int priceCode;
+    private final String title;
+    PriceCode priceCode;
 
-    public Movie (String title, int priceCode) {
+    public Movie (String title, PriceCode priceCode) {
         this.title = title;
         this.priceCode = priceCode;
     }
 
-    public int getPriceCode() {
-        return priceCode;
-    }
-
-    public void setPriceCode(int arg) {
-        priceCode = arg;
+    public void setPriceCode(PriceCode priceCode) {
+        this.priceCode = priceCode;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
